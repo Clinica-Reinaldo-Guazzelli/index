@@ -25,8 +25,13 @@ AJUSTES OBRIGATÓRIOS ANTES DE PUBLICAR
    - images/sala-atendimento.jpg
    As imagens atuais têm fallback para fotos genéricas da internet.
 3. Confirme endereço, contatos, nome profissional, credenciais e serviços antes de publicar.
-4. Revise o texto de privacidade/LGPD conforme o tratamento real de dados da clínica.
-5. O material de consulta é demonstrativo; substitua pelos arquivos finais autorizados.
+4. Mostrar na pagina mais de 2500 que passaram por la.
+5. Mostrar endereco e mapa de como chegar! Rua Brasil 343, Assis/SP (18) 99644-3026
+6. Adiicionar tratamento Hipnoterapeuta, TCC, EMDR, Terapia dos Esquemas,Quiropraxia, Massagem terapêutica, Estética, Fisioterapia e pegar fotos dos bancos de dados da internet.
+7. Whatsapp flutuante em cada item para perguntas.
+8. Depoimentos de 12 pessoas
+9. Revise o texto de privacidade/LGPD conforme o tratamento real de dados da clínica.
+10. O material de consulta é demonstrativo; substitua pelos arquivos finais autorizados.
 
 CALENDÁRIO
 - Mostra todos os dias do mês e o dia da semana correto.
@@ -56,10 +61,4 @@ digitalmente, será necessário integrar um serviço de pagamento e entrega segu
 OBSERVAÇÕES
 - O site usa Google Fonts e imagens genéricas externas como fallback; precisa de internet para carregá-las.
 - Esta é uma versão inicial de front-end, não um sistema clínico completo.
-Mostrar na pagina mais de 2500 que passaram por la.
-Mostrar endereco e mapa de como chegar! Rua Brasil 343, Assis/SP
-📞 (18) 99644-3026.
-Adiicionar tratamento Hipnoterapeuta, TCC, EMDR, Terapia dos Esquemas,Quiropraxia, Massagem terapêutica, Estética, Fisioterapia e pegar fotos dos bancos de dados da internet
 
-Whatsapp flutuante em cada item para perguntas.
-Depoimentos de 12 pessoas
