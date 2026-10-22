@@ -5,10 +5,10 @@
 */
 (() => {
   "use strict";
-  const WHATSAPP_NUMBER = "5518999999999"; // TROQUE pelo número oficial da clínica, com DDI + DDD, somente números.
-  const ADMIN_PASSWORD = "Reinaldodiasguazzelli"; // Apenas demonstração local; não protege um site público.
-  const STORAGE_KEY = "rg_clinica_agenda_demo_v1";
-  const defaultHours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
+  const WHATSAPP_NUMBER = "551899644-3026"; // TROQUE pelo número oficial da clínica, com DDI + DDD, somente números.
+  const ADMIN_PASSWORD = "clinica2024"; // Apenas demonstração local; não protege um site público.
+  const STORAGE_KEY = "clinica_rg_agenda";
+  const HORARIOS_PADRAO = ["09:00","10:00","11:00","14:00","15:00","16:00","17:00"];
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => [...document.querySelectorAll(selector)];
   const now = new Date();
