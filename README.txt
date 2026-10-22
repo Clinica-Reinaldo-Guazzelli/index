@@ -59,5 +59,7 @@ OBSERVAÇÕES
 Mostrar na pagina mais de 2500 que passaram por la.
 Mostrar endereco e mapa de como chegar! Rua Brasil 343, Assis/SP
 📞 (18) 99644-3026.
+Adiicionar tratamento Hipnoterapeuta, TCC, EMDR, Terapia dos Esquemas,Quiropraxia, Massagem terapêutica, Estética, Fisioterapia e pegar fotos dos bancos de dados da internet
+
 Whatsapp flutuante em cada item para perguntas.
 Depoimentos de 12 pessoas
