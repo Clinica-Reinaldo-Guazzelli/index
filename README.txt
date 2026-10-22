@@ -56,3 +56,8 @@ digitalmente, será necessário integrar um serviço de pagamento e entrega segu
 OBSERVAÇÕES
 - O site usa Google Fonts e imagens genéricas externas como fallback; precisa de internet para carregá-las.
 - Esta é uma versão inicial de front-end, não um sistema clínico completo.
+Mostrar na pagina mais de 2500 que passaram por la.
+Mostrar endereco e mapa de como chegar! Rua Brasil 343, Assis/SP
+📞 (18) 99644-3026.
+Whatsapp flutuante em cada item para perguntas.
+Depoimentos de 12 pessoas
