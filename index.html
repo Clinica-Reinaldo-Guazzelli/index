@@ -3,42 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Clínica Reinaldo Guazzelli — psicoterapia, hipnoterapia, TCC, EMDR, quiropraxia, massagem, estética e fisioterapia em Assis/SP. +2.500 atendimentos. Agende sua consulta.">
-<meta name="theme-color" content="#7a674f">
-<title>Clínica Reinaldo Guazzelli | Psicoterapia, Hipnoterapia e Bem-estar em Assis/SP</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Clínica Reinaldo Guazzelli — psicoterapia, hipnoterapia, TCC, EMDR, quiropraxia, massagem, estética e fisioterapia em Assis/SP. Agende sua consulta.">
+<title>Clínica Reinaldo Guazzelli | Psicoterapia e Bem-estar em Assis/SP</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://images.unsplash.com">
+<style>
+:root{
+  --primaria:#7a674f;--primaria-esc:#5c4d3a;--sec:#c9b79c;
+  --fundo:#faf8f4;--fundo-alt:#f2ede4;--texto:#2e2a24;
+  --texto-suave:#6b6359;--borda:#e3dbcc;--branco:#fff;
+  --whats:#25d366;--vermelho:#c0392b;--amarelo:#e0a800;--verde:#2e7d32;
+  --sombra:0 4px 20px rgba(0,0,0,.06);--sombra-media:0 10px 40px rgba(0,0,0,.10);
+  --raio:16px;--raio-p:10px;--trans:.3s ease;
+  --titulo:'Playfair Display',Georgia,serif;
+  --corpo:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--corpo);color:var(--texto);background:var(--fundo);line-height:1.65;font-size:16px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--titulo);line-height:1.2;font-weight:600}
+h1{font-size:clamp(2rem,4vw,3.2rem)}
+h2{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:.6em}
+h3{font-size:clamp(1.2rem,2vw,1.5rem);margin-bottom:.5em}
+p{margin-bottom:1em;color:var(--texto-suave)}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--primaria);margin-bottom:1rem}
+
+/* BOTÕES */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.85em 1.6em;border-radius:50px;font-weight:600;font-size:.95rem;transition:var(--trans);border:2px solid transparent;text-align:center}
+.btn-primary{background:var(--primaria);color:#fff}
+.btn-primary:hover{background:var(--primaria-esc);transform:translateY(-2px);box-shadow:var(--sombra-media)}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:#fff}
+.btn-secondary{background:var(--sec);color:var(--texto)}
+.btn-danger{background:var(--vermelho);color:#fff}
+.full{width:100%}
+.text-link{color:var(--primaria);font-weight:600;display:inline-flex;align-items:center;gap:.4em}
+
+/* TOPBAR */
+.topbar{background:var(--primaria-esc);color:#f0e9dd;font-size:.85rem;padding:.6em 0}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:1em;flex-wrap:wrap}
+.top-whatsapp{color:#fff;font-weight:600;border-bottom:1px solid transparent}
+.top-whatsapp:hover{border-bottom-color:#fff}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--borda)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:1em 24px;gap:1em}
+.brand{display:flex;align-items:center;gap:.75em}
+.brand-mark{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primaria),var(--primaria-esc));color:#fff;font-family:var(--titulo);font-weight:700;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand strong{display:block;font-size:1rem;line-height:1.2}
+.brand small{display:block;font-size:.72rem;color:var(--texto-suave)}
+#mainNav{display:flex;gap:1.4em;align-items:center}
+#mainNav a{font-size:.9rem;font-weight:500;color:var(--texto-suave);position:relative}
+#mainNav a:hover{color:var(--primaria)}
+#mainNav a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primaria);transition:var(--trans)}
+#mainNav a:hover::after{width:100%}
+.menu-toggle{display:none;font-size:1.6rem;color:var(--primaria);padding:.25em .5em}
+
+/* HERO */
+.hero{position:relative;min-height:85vh;display:flex;align-items:center;background:url('https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;color:#fff;padding:5em 0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(46,42,36,.88) 0%,rgba(46,42,36,.65) 60%,rgba(46,42,36,.45) 100%)}
+.hero-content{position:relative;z-index:2;max-width:720px}
+.hero .eyebrow{color:var(--sec)}
+.hero h1{color:#fff;margin-bottom:.6em}
+.hero h1 em{font-style:italic;color:var(--sec)}
+.hero p{color:rgba(255,255,255,.85);font-size:1.1rem;max-width:560px;margin-bottom:2em}
+.hero-actions{display:flex;gap:1em;flex-wrap:wrap;margin-bottom:2em}
+.hero-note{display:flex;align-items:center;gap:.5em;font-size:.88rem;color:rgba(255,255,255,.7)}
+.hero-note span{color:var(--sec);font-size:1.2rem}
+
+/* TRUST */
+.trust-strip{background:var(--fundo-alt);padding:2.5em 0;border-bottom:1px solid var(--borda)}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2em;text-align:center}
+.trust-grid>div{display:flex;flex-direction:column;align-items:center;gap:.4em}
+.trust-icon{font-size:2rem;color:var(--primaria)}
+.trust-grid strong{font-size:.98rem}
+.trust-grid small{font-size:.82rem;color:var(--texto-suave)}
+
+/* SEÇÕES */
+.section{padding:5em 0}
+.section-heading{max-width:720px;margin:0 auto 3em;text-align:center}
+.section-heading p{font-size:1.02rem}
+
+/* SOBRE */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3.5em;align-items:center}
+.photo-collage{display:grid;grid-template-columns:1fr 1fr;gap:1em}
+.photo-collage figure{border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra);position:relative}
+.photo-collage img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.photo-collage figure:hover img{transform:scale(1.05)}
+.photo-main{grid-column:1/-1}
+.photo-main img{aspect-ratio:16/9}
+.photo-small img{aspect-ratio:4/3}
+.photo-collage figcaption{position:absolute;bottom:0;left:0;right:0;padding:.7em 1em;font-size:.82rem;font-weight:500;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);color:#fff}
+
+/* SERVIÇOS */
+.services-section{background:var(--fundo-alt)}
+.featured-service{display:grid;grid-template-columns:1fr 1fr;background:var(--branco);border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra-media);margin-bottom:3em}
+.featured-image img{width:100%;height:100%;object-fit:cover;min-height:380px}
+.featured-copy{padding:2.5em;display:flex;flex-direction:column;justify-content:center;gap:.5em}
+.featured-copy h3{font-size:1.9rem}
+.pill{display:inline-block;align-self:flex-start;background:var(--sec);color:var(--primaria-esc);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.4em 1em;border-radius:50px;margin-bottom:.5em}
+.check-list{margin:.8em 0 1.5em;display:flex;flex-direction:column;gap:.5em}
+.check-list li{position:relative;padding-left:1.6em;color:var(--texto-suave);font-size:.95rem}
+.check-list li::before{content:'✓';position:absolute;left:0;color:var(--verde);font-weight:700}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5em;margin-bottom:2em}
+.service-card{background:var(--branco);border-radius:var(--raio);padding:2em 1.6em;box-shadow:var(--sombra);transition:var(--trans);border:1px solid var(--borda);display:flex;flex-direction:column;gap:.6em}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-media);border-color:var(--sec)}
+.service-symbol{font-size:1.8rem;color:var(--primaria);width:56px;height:56px;border-radius:14px;background:var(--fundo-alt);display:flex;align-items:center;justify-content:center}
+.service-card h3{font-size:1.15rem}
+.service-card p{font-size:.9rem;flex:1;margin:0}
+.btn-whatsapp-card{display:inline-flex;align-items:center;justify-content:center;gap:.4em;background:var(--whats);color:#fff;padding:.7em 1.2em;border-radius:50px;font-size:.85rem;font-weight:600;margin-top:auto;transition:var(--trans);box-shadow:0 3px 10px rgba(37,211,102,.25)}
+.btn-whatsapp-card:hover{background:#1ebe5a;transform:translateY(-2px);box-shadow:0 6px 16px rgba(37,211,102,.4)}
+.disclaimer{font-size:.82rem;color:var(--texto-suave);background:var(--branco);border-left:3px solid var(--sec);padding:1em 1.2em;border-radius:var(--raio-p);margin-top:1.5em;max-width:900px;margin-left:auto;margin-right:auto}
+
+/* PAGAMENTOS */
+.payments-section{background:var(--fundo-alt)}
+.payments-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5em;margin-bottom:2em}
+.payment-card{background:var(--branco);border-radius:var(--raio);padding:2em 1.6em;box-shadow:var(--sombra);border:1px solid var(--borda);text-align:center;transition:var(--trans);display:flex;flex-direction:column;gap:.6em}
+.payment-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-media);border-color:var(--sec)}
+.payment-icon{font-size:2rem;color:var(--primaria);width:64px;height:64px;border-radius:50%;background:var(--fundo-alt);display:flex;align-items:center;justify-content:center;margin:0 auto .5em}
+.payment-card h3{font-size:1.2rem}
+.payment-card p{font-size:.9rem;flex:1;margin:0}
+.payment-badge{display:inline-block;margin-top:.5em;background:rgba(46,125,50,.12);color:var(--verde);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.35em 1em;border-radius:50px}
+.payments-note{background:var(--branco);border-radius:var(--raio);padding:1.8em 2em;text-align:center;box-shadow:var(--sombra);border:1px solid var(--borda);display:flex;flex-direction:column;align-items:center;gap:1em}
+.payments-note p{font-size:.92rem;max-width:640px;margin:0}
+
+/* AGENDA */
+.calendar-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:2em;align-items:start}
+.calendar-card,.slots-card{background:var(--branco);border-radius:var(--raio);padding:2em;box-shadow:var(--sombra);border:1px solid var(--borda)}
+.calendar-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5em}
+.calendar-top h3{font-size:1.25rem;text-transform:capitalize}
+.month-arrow{width:40px;height:40px;border-radius:50%;background:var(--fundo-alt);color:var(--primaria);font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:var(--trans)}
+.month-arrow:hover{background:var(--primaria);color:#fff}
+.calendar-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:.3em;margin-bottom:.5em}
+.calendar-weekdays span{text-align:center;font-size:.72rem;font-weight:700;color:var(--texto-suave);letter-spacing:.05em;padding:.4em 0}
+.calendar-days{display:grid;grid-template-columns:repeat(7,1fr);gap:.3em}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:var(--raio-p);font-size:.9rem;font-weight:500;cursor:pointer;transition:var(--trans);border:2px solid transparent}
+.cal-day:hover:not(.empty):not(.disabled){background:var(--fundo-alt)}
+.cal-day.empty{cursor:default;visibility:hidden}
+.cal-day.disabled{color:#c8c0b4;cursor:not-allowed;text-decoration:line-through}
+.cal-day.free{background:rgba(46,125,50,.12)}
+.cal-day.partial{background:rgba(224,168,0,.15)}
+.cal-day.full{background:rgba(192,57,43,.12);color:#a03024}
+.cal-day.selected{border-color:var(--primaria);background:var(--primaria);color:#fff;font-weight:700}
+.calendar-legend{display:flex;flex-wrap:wrap;gap:1em;margin-top:1.5em;font-size:.78rem;color:var(--texto-suave)}
+.calendar-legend span{display:flex;align-items:center;gap:.4em}
+.legend-dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.legend-dot.free{background:var(--verde)}
+.legend-dot.partial{background:var(--amarelo)}
+.legend-dot.full{background:var(--vermelho)}
+.calendar-footnote{font-size:.78rem;color:var(--texto-suave);margin-top:1em;font-style:italic}
+
+.slots-card h3{font-size:1.3rem;margin-bottom:.3em}
+.slots-card>p{font-size:.9rem;margin-bottom:1.2em}
+.slots-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.7em;margin-bottom:1.5em}
+.slot-btn{padding:.7em .5em;border-radius:var(--raio-p);background:var(--fundo-alt);color:var(--texto);font-weight:600;font-size:.9rem;transition:var(--trans);border:2px solid transparent;text-align:center}
+.slot-btn:hover:not(.occupied){background:var(--primaria);color:#fff;border-color:var(--primaria)}
+.slot-btn.occupied{background:rgba(192,57,43,.1);color:#a03024;text-decoration:line-through;cursor:not-allowed}
+.slot-btn.selected{background:var(--primaria);color:#fff;border-color:var(--primaria)}
+.empty-state{padding:2em;text-align:center;color:var(--texto-suave);font-style:italic;background:var(--fundo-alt);border-radius:var(--raio-p)}
+.booking-form{margin-top:1.5em;padding-top:1.5em;border-top:1px solid var(--borda)}
+.booking-form h4{font-size:1.1rem;margin-bottom:1em}
+.selected-slot-info{background:var(--fundo-alt);border-left:3px solid var(--primaria);padding:.8em 1em;border-radius:var(--raio-p);font-size:.9rem;color:var(--primaria-esc);margin-bottom:1em}
+.selected-slot-info strong{color:var(--primaria)}
+.booking-form label,.contact-panel label,.admin-dialog label{display:block;margin-bottom:1em;font-size:.88rem;font-weight:600}
+.booking-form input,.contact-panel input,.contact-panel select,.contact-panel textarea,.admin-dialog input,.admin-dialog select{width:100%;padding:.75em 1em;margin-top:.4em;border:1.5px solid var(--borda);border-radius:var(--raio-p);font-family:inherit;font-size:.95rem;background:var(--fundo);transition:var(--trans)}
+.booking-form input:focus,.contact-panel input:focus,.contact-panel select:focus,.contact-panel textarea:focus,.admin-dialog input:focus,.admin-dialog select:focus{outline:none;border-color:var(--primaria);background:#fff;box-shadow:0 0 0 3px rgba(122,103,79,.12)}
+.checkbox-label{display:flex!important;align-items:flex-start;gap:.6em;font-weight:400!important;font-size:.82rem!important;line-height:1.4;color:var(--texto-suave)!important}
+.checkbox-label input{width:auto!important;margin-top:.2em!important;flex-shrink:0}
+
+/* MATERIAIS */
+.materials-section{background:var(--fundo-alt)}
+.materials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5em;margin-bottom:2em}
+.material-card{background:var(--branco);border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra);transition:var(--trans);display:flex;flex-direction:column}
+.material-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-media)}
+.material-art{height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3em;color:#fff;font-family:var(--titulo)}
+.material-art span{font-size:2rem;font-weight:700;opacity:.5}
+.material-art b{font-size:1.05rem;font-weight:600}
+.art-one{background:linear-gradient(135deg,#7a674f,#5c4d3a)}
+.art-two{background:linear-gradient(135deg,#8a9a5b,#6b7a42)}
+.art-three{background:linear-gradient(135deg,#c9b79c,#a8977c)}
+.material-body{padding:1.6em;display:flex;flex-direction:column;flex:1}
+.material-type{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--primaria);margin-bottom:.5em}
+.material-body h3{font-size:1.1rem;margin-bottom:.4em}
+.material-body p{font-size:.88rem;flex:1;margin-bottom:1em}
+.material-link{font-size:.88rem;font-weight:600;color:var(--primaria)}
+
+/* DEPOIMENTOS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5em}
+.testimonial-card{background:var(--branco);border-radius:var(--raio);padding:1.8em;box-shadow:var(--sombra);border:1px solid var(--borda);display:flex;flex-direction:column;gap:1.2em;transition:var(--trans)}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--sombra-media)}
+.testimonial-text{font-size:.92rem;color:var(--texto-suave);line-height:1.65;font-style:italic;position:relative;padding-top:.5em}
+.testimonial-text::before{content:'"';position:absolute;top:-.4em;left:-.1em;font-family:var(--titulo);font-size:3rem;color:var(--sec);opacity:.4;line-height:1}
+.testimonial-author{display:flex;align-items:center;gap:.8em;border-top:1px solid var(--borda);padding-top:1em;margin-top:auto}
+.testimonial-avatar{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--primaria),var(--primaria-esc));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;font-family:var(--titulo)}
+.testimonial-author strong{display:block;font-size:.9rem}
+.testimonial-author small{display:block;font-size:.78rem;color:var(--texto-suave)}
+
+/* CONTATO */
+.contact-section{background:var(--fundo-alt)}
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:3em;align-items:start}
+.contact-detail{display:flex;align-items:flex-start;gap:1em;padding:1em 0;border-bottom:1px solid var(--borda)}
+.contact-detail>span{font-size:1.4rem;color:var(--primaria);flex-shrink:0;width:32px;text-align:center}
+.contact-detail>div{flex:1}
+.contact-detail strong{display:block;font-size:.95rem}
+.contact-detail small{display:block;font-size:.85rem;color:var(--texto-suave)}
+.contact-detail a{font-size:.85rem;font-weight:600;color:var(--primaria);white-space:nowrap}
+.map-container{margin-top:1.5em;border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra)}
+.contact-panel{background:var(--branco);border-radius:var(--raio);padding:2.2em;box-shadow:var(--sombra-media)}
+.contact-panel h3{font-size:1.35rem;margin-bottom:.3em}
+.contact-panel>p{font-size:.88rem;margin-bottom:1.5em}
+.contact-panel textarea{resize:vertical;min-height:100px}
+
+/* LGPD */
+.privacy-section{padding:4em 0;border-top:1px solid var(--borda)}
+.privacy-content{display:grid;grid-template-columns:1fr 2fr;gap:3em}
+.privacy-content p{font-size:.88rem;line-height:1.7}
+.privacy-note{font-style:italic;background:var(--fundo-alt);padding:.8em 1em;border-radius:var(--raio-p);font-size:.82rem!important}
+
+/* FOOTER */
+.site-footer{background:var(--primaria-esc);color:#e8e0d4;padding:3em 0 2em}
+.footer-inner{display:flex;flex-direction:column;gap:1.5em;align-items:center;text-align:center}
+.footer-brand .brand-mark{background:rgba(255,255,255,.15)}
+.footer-brand strong{color:#fff}
+.footer-brand small{color:rgba(255,255,255,.7)}
+.footer-links{display:flex;flex-wrap:wrap;gap:1.5em;justify-content:center}
+.footer-links a,.footer-links button{font-size:.88rem;color:rgba(255,255,255,.8);transition:var(--trans)}
+.footer-links a:hover,.footer-links button:hover{color:#fff}
+.admin-link{text-decoration:underline;text-underline-offset:3px}
+.footer-inner>p{font-size:.82rem;color:rgba(255,255,255,.6);margin:0}
+
+/* WHATSAPP FLUTUANTE */
+.floating-whatsapp{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;align-items:center;gap:.5em;background:var(--whats);color:#fff;padding:.85em 1.3em;border-radius:50px;font-weight:600;font-size:.9rem;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:var(--trans)}
+.floating-whatsapp:hover{transform:translateY(-3px) scale(1.03)}
+.floating-whatsapp span{font-size:1.3rem}
+
+/* DIALOG */
+.admin-dialog{width:min(560px,92vw);max-height:90vh;overflow-y:auto;border:none;border-radius:var(--raio);padding:2em;background:var(--branco);box-shadow:0 25px 80px rgba(0,0,0,.3);margin:auto}
+.admin-dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+.dialog-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5em;gap:1em}
+.dialog-head h2{font-size:1.5rem;margin:0}
+.dialog-close{font-size:1.8rem;color:var(--texto-suave);line-height:1;padding:.2em}
+.dialog-close:hover{color:var(--vermelho)}
+.admin-warning{font-size:.8rem;color:#a03024;background:rgba(192,57,43,.08);padding:.8em 1em;border-radius:var(--raio-p);border-left:3px solid var(--vermelho);margin-bottom:1.2em}
+.admin-actions{display:flex;flex-wrap:wrap;gap:.8em;margin:1.5em 0}
+.admin-actions .btn{flex:1;min-width:140px;font-size:.85rem;padding:.7em 1em}
+.admin-records{margin-top:1em;font-size:.85rem;max-height:300px;overflow-y:auto}
+.admin-records table{width:100%;border-collapse:collapse;margin-top:1em}
+.admin-records th,.admin-records td{padding:.5em;border-bottom:1px solid var(--borda);text-align:left;font-size:.78rem}
+.admin-records th{background:var(--fundo-alt);font-weight:600}
+
+/* RESPONSIVO */
+@media(max-width:960px){
+  .split,.calendar-layout,.contact-grid,.featured-service,.privacy-content{grid-template-columns:1fr}
+  .featured-image img{min-height:240px}
+  .hero{min-height:70vh}
+  #mainNav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--branco);flex-direction:column;padding:1.5em;gap:1.2em;box-shadow:var(--sombra-media);border-bottom:1px solid var(--borda)}
+  #mainNav.open{display:flex}
+  .menu-toggle{display:block}
+  .nav-wrap{position:relative}
+}
+@media(max-width:640px){
+  .section{padding:3em 0}
+  .container{padding:0 16px}
+  .hero{padding:4em 0}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{width:100%}
+  .topbar-inner{flex-direction:column;text-align:center;gap:.4em}
+  .service-grid,.materials-grid,.testimonials-grid,.payments-grid{grid-template-columns:1fr}
+  .photo-collage{grid-template-columns:1fr}
+  .photo-main{grid-column:1}
+  .calendar-card,.slots-card,.contact-panel{padding:1.4em}
+  .floating-whatsapp b{display:none}
+  .floating-whatsapp{padding:.9em;border-radius:50%}
+  .floating-whatsapp span{font-size:1.5rem}
+  .slots-list{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
+}
+</style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="container topbar-inner">
     <span>✦ Espaço de escuta, acolhimento e transformação — Assis/SP</span>
-    <a class="top-whatsapp" data-whatsapp data-message="Olá! Gostaria de tirar uma dúvida sobre os atendimentos." href="#">WhatsApp: (18) 99644-3026</a>
+    <a class="top-whatsapp" data-wa data-msg="Olá! Gostaria de tirar uma dúvida sobre os atendimentos." href="#">WhatsApp: (18) 99644-3026</a>
   </div>
 </div>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="brand" href="#inicio" aria-label="Clínica Reinaldo Guazzelli - início">
+    <a class="brand" href="#inicio">
       <span class="brand-mark">RG</span>
-      <span>
-        <strong>Clínica Reinaldo Guazzelli</strong>
-        <small>Psicoterapia • Hipnoterapia • Bem-estar</small>
-      </span>
+      <span><strong>Clínica Reinaldo Guazzelli</strong><small>Psicoterapia • Hipnoterapia • Bem-estar</small></span>
     </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">☰</button>
     <nav id="mainNav">
       <a href="#sobre">A clínica</a>
       <a href="#atendimentos">Atendimentos</a>
       <a href="#pagamentos">Pagamentos</a>
       <a href="#agenda">Agendamento</a>
-      <a href="#materiais">Materiais</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -47,7 +313,6 @@
 
 <main>
 
-<!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-overlay"></div>
   <div class="container hero-content">
@@ -56,13 +321,12 @@
     <p>Psicoterapia, hipnoterapia e terapias integrativas em um espaço pensado para acolher sua história, respeitar seu tempo e apoiar seu processo de autoconhecimento.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#agenda">Consultar horários</a>
-      <a class="btn btn-outline" data-whatsapp data-message="Olá! Gostaria de saber mais sobre a hipnoterapia." href="#">Conversar pelo WhatsApp</a>
+      <a class="btn btn-outline" data-wa data-msg="Olá! Gostaria de saber mais sobre a hipnoterapia." href="#">Conversar pelo WhatsApp</a>
     </div>
     <div class="hero-note"><span>✦</span> Atendimento individual • Agendamento prévio</div>
   </div>
 </section>
 
-<!-- TRUST STRIP -->
 <section class="trust-strip">
   <div class="container trust-grid">
     <div><span class="trust-icon">♡</span><strong>Escuta acolhedora</strong><small>Um espaço sem julgamentos</small></div>
@@ -72,25 +336,23 @@
   </div>
 </section>
 
-<!-- SOBRE -->
 <section class="section" id="sobre">
   <div class="container split">
-    <div class="section-copy">
+    <div>
       <span class="eyebrow">Conheça nosso espaço</span>
       <h2>Um ambiente para respirar, conversar e se cuidar.</h2>
-      <p>A Clínica Reinaldo Guazzelli busca oferecer um ambiente acolhedor para conversas, reflexão e cuidado. Cada atendimento respeita as necessidades e os objetivos de quem procura ajuda, com escuta atenta e abordagens baseadas em evidências.</p>
+      <p>A Clínica Reinaldo Guazzelli busca oferecer um ambiente acolhedor para conversas, reflexão e cuidado. Cada atendimento respeita as necessidades e os objetivos de quem procura ajuda.</p>
       <p>Com mais de <strong>2.500 pessoas atendidas</strong>, nossa equipe multidisciplinar está pronta para acolher você em diferentes frentes: saúde emocional, corporal e estética.</p>
-      <a class="text-link" href="#contato">Fale com a clínica <span>→</span></a>
+      <a class="text-link" href="#contato">Fale com a clínica →</a>
     </div>
     <div class="photo-collage">
-      <figure class="photo-main"><img src="images/fachada-clinica.jpg" alt="Fachada da clínica" onerror="this.src='https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80'"><figcaption>Fachada e entrada</figcaption></figure>
-      <figure class="photo-small"><img src="images/recepcao-clinica.jpg" alt="Recepção da clínica" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80'"><figcaption>Recepção</figcaption></figure>
-      <figure class="photo-small"><img src="images/sala-atendimento.jpg" alt="Sala de atendimento" onerror="this.src='https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=800&q=80'"><figcaption>Sala de atendimento</figcaption></figure>
+      <figure class="photo-main"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80" alt="Fachada"><figcaption>Fachada e entrada</figcaption></figure>
+      <figure class="photo-small"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Recepção"><figcaption>Recepção</figcaption></figure>
+      <figure class="photo-small"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=800&q=80" alt="Sala"><figcaption>Sala de atendimento</figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- ATENDIMENTOS -->
 <section class="section services-section" id="atendimentos">
   <div class="container">
     <div class="section-heading">
@@ -100,83 +362,36 @@
     </div>
 
     <article class="featured-service">
-      <div class="featured-image"><img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1100&q=80" alt="Paisagem tranquila ao amanhecer"></div>
+      <div class="featured-image"><img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1100&q=80" alt="Amanhecer"></div>
       <div class="featured-copy">
         <span class="pill">Destaque da clínica</span>
         <h3>Hipnoterapia</h3>
-        <p>A hipnoterapia utiliza técnicas de relaxamento e foco da atenção dentro de um processo conduzido por profissional habilitado. O atendimento é individualizado e começa com uma conversa para compreender suas necessidades e esclarecer dúvidas.</p>
+        <p>A hipnoterapia utiliza técnicas de relaxamento e foco da atenção dentro de um processo conduzido por profissional habilitado. O atendimento é individualizado e começa com uma conversa para compreender suas necessidades.</p>
         <ul class="check-list">
           <li>Entendimento dos objetivos de atendimento</li>
           <li>Orientações claras antes de iniciar</li>
           <li>Respeito ao seu ritmo e às suas escolhas</li>
         </ul>
-        <a class="btn btn-primary" data-whatsapp data-message="Olá! Gostaria de tirar dúvidas e saber mais sobre a hipnoterapia." href="#">Tirar dúvidas sobre hipnoterapia</a>
+        <a class="btn btn-primary" data-wa data-msg="Olá! Gostaria de tirar dúvidas sobre hipnoterapia." href="#">Tirar dúvidas sobre hipnoterapia</a>
       </div>
     </article>
 
-    <!-- Grade de serviços com botão WhatsApp em cada card -->
     <div class="service-grid">
-      <article class="service-card">
-        <div class="service-symbol">◌</div>
-        <h3>Psicoterapia</h3>
-        <p>Um espaço de escuta e reflexão para trabalhar questões emocionais, relacionais e comportamentais.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre psicoterapia." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">◎</div>
-        <h3>TCC — Terapia Cognitivo-Comportamental</h3>
-        <p>Abordagem estruturada que explora a relação entre pensamentos, emoções e comportamentos.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre TCC." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">✧</div>
-        <h3>Terapia do Esquema</h3>
-        <p>Abordagem que investiga padrões emocionais e relacionais e busca ampliar formas de enfrentamento.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre Terapia do Esquema." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">⌁</div>
-        <h3>EMDR</h3>
-        <p>Método terapêutico reconhecido para o tratamento de traumas e experiências adversas.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre EMDR." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">✺</div>
-        <h3>Quiropraxia</h3>
-        <p>Ajustes manuais para alinhar a coluna e aliviar dores, melhorando a mobilidade e o bem-estar.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre quiropraxia." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">☽</div>
-        <h3>Massagem Terapêutica</h3>
-        <p>Técnicas de massagem para relaxamento muscular, alívio de tensões e equilíbrio corporal.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre massagem terapêutica." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">✿</div>
-        <h3>Estética</h3>
-        <p>Procedimentos estéticos para cuidar da pele e da autoestima com segurança e profissionalismo.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre estética." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">⚕</div>
-        <h3>Fisioterapia</h3>
-        <p>Reabilitação e prevenção de lesões com acompanhamento fisioterapêutico especializado.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de informações sobre fisioterapia." href="#">Falar no WhatsApp ↗</a>
-      </article>
-      <article class="service-card">
-        <div class="service-symbol">⌁</div>
-        <h3>Orientação inicial</h3>
-        <p>Converse com a equipe para conhecer os serviços, entender o funcionamento e verificar horários.</p>
-        <a class="btn-whatsapp-card" data-whatsapp data-message="Olá! Gostaria de uma orientação inicial sobre os serviços da clínica." href="#">Falar no WhatsApp ↗</a>
-      </article>
+      <article class="service-card"><div class="service-symbol">◌</div><h3>Psicoterapia</h3><p>Escuta e reflexão para trabalhar questões emocionais, relacionais e comportamentais.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre psicoterapia." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">◎</div><h3>TCC</h3><p>Abordagem estruturada que explora a relação entre pensamentos, emoções e comportamentos.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre TCC." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">✧</div><h3>Terapia do Esquema</h3><p>Investiga padrões emocionais e relacionais e busca ampliar formas de enfrentamento.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre Terapia do Esquema." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">⌁</div><h3>EMDR</h3><p>Método terapêutico reconhecido para o tratamento de traumas e experiências adversas.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre EMDR." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">✺</div><h3>Quiropraxia</h3><p>Ajustes manuais para alinhar a coluna e aliviar dores, melhorando a mobilidade.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre quiropraxia." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">☽</div><h3>Massagem Terapêutica</h3><p>Técnicas para relaxamento muscular, alívio de tensões e equilíbrio corporal.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre massagem terapêutica." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">✿</div><h3>Estética</h3><p>Procedimentos estéticos para cuidar da pele e da autoestima com segurança.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre estética." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">⚕</div><h3>Fisioterapia</h3><p>Reabilitação e prevenção de lesões com acompanhamento especializado.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de informações sobre fisioterapia." href="#">WhatsApp ↗</a></article>
+      <article class="service-card"><div class="service-symbol">⌁</div><h3>Orientação inicial</h3><p>Converse com a equipe para conhecer os serviços e verificar horários.</p><a class="btn-whatsapp-card" data-wa data-msg="Olá! Gostaria de uma orientação inicial." href="#">WhatsApp ↗</a></article>
     </div>
 
-    <p class="disclaimer">As informações do site são educativas e não substituem avaliação profissional. Nenhuma abordagem garante resultados específicos; a adequação deve ser discutida com o profissional responsável.</p>
+    <p class="disclaimer">As informações são educativas e não substituem avaliação profissional. Nenhuma abordagem garante resultados específicos.</p>
   </div>
 </section>
 
-<!-- PAGAMENTOS -->
 <section class="section payments-section" id="pagamentos">
   <div class="container">
     <div class="section-heading">
@@ -185,76 +400,55 @@
       <p>Oferecemos diferentes opções para facilitar o seu cuidado. Consulte valores e condições diretamente com a clínica.</p>
     </div>
     <div class="payments-grid">
-      <article class="payment-card">
-        <div class="payment-icon">⚡</div>
-        <h3>Pix</h3>
-        <p>Pagamento instantâneo com desconto. Chave Pix informada no momento do agendamento.</p>
-        <span class="payment-badge">Rápido e seguro</span>
-      </article>
-      <article class="payment-card">
-        <div class="payment-icon">◌</div>
-        <h3>Sessão Avulsa</h3>
-        <p>Atendimento único, ideal para quem quer conhecer o trabalho ou precisa de uma consulta pontual.</p>
-        <span class="payment-badge">Sem compromisso</span>
-      </article>
-      <article class="payment-card">
-        <div class="payment-icon">✧</div>
-        <h3>Pacote Mensal</h3>
-        <p>4 sessões por mês com valor reduzido. Indicado para acompanhamento contínuo e resultados consistentes.</p>
-        <span class="payment-badge">Economia</span>
-      </article>
-      <article class="payment-card">
-        <div class="payment-icon">◎</div>
-        <h3>Pacote Trimestral</h3>
-        <p>12 sessões com desconto progressivo. Para quem busca um processo terapêutico mais profundo.</p>
-        <span class="payment-badge">Melhor custo</span>
-      </article>
+      <article class="payment-card"><div class="payment-icon">⚡</div><h3>Pix</h3><p>Pagamento instantâneo com desconto. Chave Pix informada no agendamento.</p><span class="payment-badge">Rápido e seguro</span></article>
+      <article class="payment-card"><div class="payment-icon">◌</div><h3>Sessão Avulsa</h3><p>Atendimento único, ideal para quem quer conhecer o trabalho ou precisa de consulta pontual.</p><span class="payment-badge">Sem compromisso</span></article>
+      <article class="payment-card"><div class="payment-icon">✧</div><h3>Pacote Mensal</h3><p>4 sessões por mês com valor reduzido. Indicado para acompanhamento contínuo.</p><span class="payment-badge">Economia</span></article>
+      <article class="payment-card"><div class="payment-icon">◎</div><h3>Pacote Trimestral</h3><p>12 sessões com desconto progressivo. Para processo terapêutico mais profundo.</p><span class="payment-badge">Melhor custo</span></article>
     </div>
     <div class="payments-note">
       <p><strong>Formas aceitas:</strong> Pix, dinheiro, cartão de débito e crédito (consulte parcelamento). Emitimos recibo para reembolso de plano de saúde.</p>
-      <a class="btn btn-primary" data-whatsapp data-message="Olá! Gostaria de saber os valores e condições de pagamento." href="#">Consultar valores no WhatsApp</a>
+      <a class="btn btn-primary" data-wa data-msg="Olá! Gostaria de saber os valores e condições de pagamento." href="#">Consultar valores no WhatsApp</a>
     </div>
   </div>
 </section>
 
-<!-- AGENDA -->
 <section class="section agenda-section" id="agenda">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">Agendamento</span>
       <h2>Encontre um horário</h2>
-      <p>Escolha uma data disponível, selecione o horário e preencha seus dados. A solicitação será enviada pelo WhatsApp e confirmada pela clínica.</p>
+      <p>Escolha uma data, selecione o horário e preencha seus dados. A solicitação será enviada pelo WhatsApp.</p>
     </div>
     <div class="calendar-layout">
       <div class="calendar-card">
         <div class="calendar-top">
           <button id="prevMonth" class="month-arrow" aria-label="Mês anterior">‹</button>
-          <h3 id="monthLabel" aria-live="polite">Mês Ano</h3>
+          <h3 id="monthLabel">Mês Ano</h3>
           <button id="nextMonth" class="month-arrow" aria-label="Próximo mês">›</button>
         </div>
         <div class="calendar-weekdays" aria-hidden="true"><span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span></div>
-        <div class="calendar-days" id="calendarDays" aria-label="Dias do mês"></div>
+        <div class="calendar-days" id="calendarDays"></div>
         <div class="calendar-legend">
           <span><i class="legend-dot free"></i> Disponível</span>
-          <span><i class="legend-dot partial"></i> Alguns horários ocupados</span>
+          <span><i class="legend-dot partial"></i> Parcial</span>
           <span><i class="legend-dot full"></i> Lotado</span>
         </div>
-        <p class="calendar-footnote">Atendimento de segunda a sexta-feira. Clique em um dia útil para ver os horários.</p>
+        <p class="calendar-footnote">Atendimento de segunda a sexta. Clique em um dia útil.</p>
       </div>
       <div class="slots-card">
         <span class="eyebrow">Sua escolha</span>
         <h3 id="selectedDateTitle">Horários disponíveis</h3>
-        <p id="selectedDateHelp">Selecione um dia útil no calendário para visualizar os horários.</p>
+        <p id="selectedDateHelp">Selecione um dia útil no calendário.</p>
         <div id="slotsList" class="slots-list"><div class="empty-state">Nenhuma data selecionada.</div></div>
         <div class="booking-form" id="bookingForm" hidden>
           <h4>Confirmar solicitação</h4>
           <div class="selected-slot-info" id="selectedSlotInfo"></div>
           <form id="bookingRequest">
-            <label>Nome completo<input name="nome" autocomplete="name" required maxlength="100" placeholder="Seu nome completo"></label>
-            <label>Celular / WhatsApp<input name="celular" autocomplete="tel" required placeholder="(DDD) 99999-9999" maxlength="20"></label>
+            <label>Nome completo<input name="nome" required maxlength="100" placeholder="Seu nome completo"></label>
+            <label>Celular / WhatsApp<input name="celular" required maxlength="20" placeholder="(DDD) 99999-9999"></label>
             <label>Cidade<input name="cidade" required maxlength="80" placeholder="Sua cidade"></label>
             <label class="checkbox-label"><input type="checkbox" name="consentimento" required> Li o aviso de privacidade e autorizo o uso dos dados para retorno sobre este pedido.</label>
-            <button class="btn btn-primary full-width" type="submit">Enviar solicitação pelo WhatsApp</button>
+            <button class="btn btn-primary full" type="submit">Enviar pelo WhatsApp</button>
           </form>
         </div>
       </div>
@@ -262,40 +456,38 @@
   </div>
 </section>
 
-<!-- MATERIAIS -->
 <section class="section materials-section" id="materiais">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">Biblioteca de apoio</span>
       <h2>Materiais para consulta</h2>
-      <p>Conteúdos informativos para leitura e reflexão. Os materiais abaixo são exemplos e podem ser substituídos pelos materiais autorizados pela clínica.</p>
+      <p>Conteúdos informativos para leitura e reflexão. Solicite pelo WhatsApp.</p>
     </div>
     <div class="materials-grid">
-      <article class="material-card"><div class="material-art art-one"><span>01</span><b>Autoconhecimento</b></div><div class="material-body"><span class="material-type">GUIA INFORMATIVO</span><h3>Diário de emoções</h3><p>Um modelo simples para registrar situações, emoções e pensamentos ao longo do dia.</p><a href="#contato" data-material="Diário de emoções" class="material-link">Solicitar material ↗</a></div></article>
-      <article class="material-card"><div class="material-art art-two"><span>02</span><b>Respiração e pausa</b></div><div class="material-body"><span class="material-type">FOLHA DE EXERCÍCIOS</span><h3>Pausa consciente</h3><p>Uma folha de apoio com sugestões gerais para fazer pequenas pausas na rotina.</p><a href="#contato" data-material="Pausa consciente" class="material-link">Solicitar material ↗</a></div></article>
-      <article class="material-card"><div class="material-art art-three"><span>03</span><b>Reflexão pessoal</b></div><div class="material-body"><span class="material-type">CADERNO DE REFLEXÃO</span><h3>Perguntas para refletir</h3><p>Perguntas abertas para apoiar conversas e reflexões durante o processo de cuidado.</p><a href="#contato" data-material="Perguntas para refletir" class="material-link">Solicitar material ↗</a></div></article>
+      <article class="material-card"><div class="material-art art-one"><span>01</span><b>Autoconhecimento</b></div><div class="material-body"><span class="material-type">GUIA</span><h3>Diário de emoções</h3><p>Modelo simples para registrar situações, emoções e pensamentos.</p><a href="#" data-material="Diário de emoções" class="material-link">Solicitar ↗</a></div></article>
+      <article class="material-card"><div class="material-art art-two"><span>02</span><b>Respiração</b></div><div class="material-body"><span class="material-type">EXERCÍCIOS</span><h3>Pausa consciente</h3><p>Folha de apoio com sugestões para pequenas pausas na rotina.</p><a href="#" data-material="Pausa consciente" class="material-link">Solicitar ↗</a></div></article>
+      <article class="material-card"><div class="material-art art-three"><span>03</span><b>Reflexão</b></div><div class="material-body"><span class="material-type">CADERNO</span><h3>Perguntas para refletir</h3><p>Perguntas abertas para apoiar conversas e reflexões.</p><a href="#" data-material="Perguntas para refletir" class="material-link">Solicitar ↗</a></div></article>
     </div>
-    <p class="disclaimer">Os materiais são educativos, não constituem diagnóstico ou tratamento e não substituem acompanhamento profissional.</p>
+    <p class="disclaimer">Os materiais são educativos e não substituem acompanhamento profissional.</p>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
-<section class="section testimonials-section" id="depoimentos">
+<section class="section" id="depoimentos">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">Histórias reais</span>
       <h2>O que nossos pacientes dizem</h2>
-      <p>Depoimentos de pessoas que passaram pela clínica e vivenciaram processos de cuidado e transformação.</p>
+      <p>Depoimentos de pessoas que passaram pela clínica e vivenciaram processos de cuidado.</p>
     </div>
     <div class="testimonials-grid">
       <article class="testimonial-card"><div class="testimonial-text">A hipnoterapia me ajudou a lidar com a ansiedade de uma forma que eu nunca imaginei. Profissional atencioso e ambiente acolhedor.</div><div class="testimonial-author"><span class="testimonial-avatar">MC</span><div><strong>Maria Clara S.</strong><small>Hipnoterapia</small></div></div></article>
       <article class="testimonial-card"><div class="testimonial-text">A TCC transformou minha relação com pensamentos negativos. Hoje consigo identificar gatilhos e reagir de forma mais saudável.</div><div class="testimonial-author"><span class="testimonial-avatar">JP</span><div><strong>João Paulo M.</strong><small>TCC</small></div></div></article>
-      <article class="testimonial-card"><div class="testimonial-text">Cheguei com dores na coluna e saí com uma nova perspectiva de vida. A quiropraxia e o cuidado integral fizeram toda a diferença.</div><div class="testimonial-author"><span class="testimonial-avatar">AF</span><div><strong>Ana Flávia R.</strong><small>Quiropraxia</small></div></div></article>
+      <article class="testimonial-card"><div class="testimonial-text">Cheguei com dores na coluna e saí com uma nova perspectiva de vida. A quiropraxia fez toda a diferença.</div><div class="testimonial-author"><span class="testimonial-avatar">AF</span><div><strong>Ana Flávia R.</strong><small>Quiropraxia</small></div></div></article>
       <article class="testimonial-card"><div class="testimonial-text">O EMDR foi um divisor de águas no meu processo terapêutico. Consegui ressignificar um trauma que carregava há anos.</div><div class="testimonial-author"><span class="testimonial-avatar">RS</span><div><strong>Ricardo S.</strong><small>EMDR</small></div></div></article>
-      <article class="testimonial-card"><div class="testimonial-text">A massagem terapêutica aqui é incomparável. Saio renovada a cada sessão. Recomendo para quem precisa de um cuidado completo.</div><div class="testimonial-author"><span class="testimonial-avatar">LM</span><div><strong>Luciana M.</strong><small>Massagem Terapêutica</small></div></div></article>
+      <article class="testimonial-card"><div class="testimonial-text">A massagem terapêutica aqui é incomparável. Saio renovada a cada sessão. Recomendo para quem precisa de cuidado completo.</div><div class="testimonial-author"><span class="testimonial-avatar">LM</span><div><strong>Luciana M.</strong><small>Massagem</small></div></div></article>
       <article class="testimonial-card"><div class="testimonial-text">A terapia do esquema me fez entender padrões que se repetiam na minha vida. Hoje me relaciono de forma mais consciente.</div><div class="testimonial-author"><span class="testimonial-avatar">CF</span><div><strong>Carlos F.</strong><small>Terapia do Esquema</small></div></div></article>
-      <article class="testimonial-card"><div class="testimonial-text">Os tratamentos estéticos superaram minhas expectativas. Resultado natural e um atendimento que respeita a individualidade.</div><div class="testimonial-author"><span class="testimonial-avatar">PT</span><div><strong>Patrícia T.</strong><small>Estética</small></div></div></article>
-      <article class="testimonial-card"><div class="testimonial-text">A fisioterapia aqui foi essencial na minha recuperação pós-cirúrgica. Equipe dedicada e atenciosa em cada detalhe.</div><div class="testimonial-author"><span class="testimonial-avatar">GB</span><div><strong>Gustavo B.</strong><small>Fisioterapia</small></div></div></article>
+      <article class="testimonial-card"><div class="testimonial-text">Os tratamentos estéticos superaram minhas expectativas. Resultado natural e atendimento que respeita a individualidade.</div><div class="testimonial-author"><span class="testimonial-avatar">PT</span><div><strong>Patrícia T.</strong><small>Estética</small></div></div></article>
+      <article class="testimonial-card"><div class="testimonial-text">A fisioterapia foi essencial na minha recuperação pós-cirúrgica. Equipe dedicada e atenciosa em cada detalhe.</div><div class="testimonial-author"><span class="testimonial-avatar">GB</span><div><strong>Gustavo B.</strong><small>Fisioterapia</small></div></div></article>
       <article class="testimonial-card"><div class="testimonial-text">Encontrei na psicoterapia um espaço seguro para falar sobre o que eu sentia. Hoje me sinto mais leve e confiante.</div><div class="testimonial-author"><span class="testimonial-avatar">FC</span><div><strong>Fernanda C.</strong><small>Psicoterapia</small></div></div></article>
       <article class="testimonial-card"><div class="testimonial-text">A hipnoterapia me ajudou a superar o medo de dirigir. Em poucas sessões já me sentia muito mais segura.</div><div class="testimonial-author"><span class="testimonial-avatar">BA</span><div><strong>Bruno A.</strong><small>Hipnoterapia</small></div></div></article>
       <article class="testimonial-card"><div class="testimonial-text">O ambiente da clínica é acolhedor e a equipe muito atenciosa. Sinto que estou no lugar certo para cuidar de mim.</div><div class="testimonial-author"><span class="testimonial-avatar">CS</span><div><strong>Camila S.</strong><small>Psicoterapia / TCC</small></div></div></article>
@@ -304,81 +496,53 @@
   </div>
 </section>
 
-<!-- CONTATO -->
 <section class="section contact-section" id="contato">
   <div class="container contact-grid">
     <div>
       <span class="eyebrow">Estamos à disposição</span>
       <h2>Vamos conversar?</h2>
-      <p>Entre em contato para esclarecer dúvidas sobre os atendimentos, materiais ou disponibilidade de horários.</p>
-
+      <p>Entre em contato para esclarecer dúvidas sobre atendimentos, materiais ou disponibilidade.</p>
       <div class="contact-detail">
         <span>✆</span>
         <div><strong>WhatsApp / Telefone</strong><small>(18) 99644-3026</small></div>
-        <a data-whatsapp data-message="Olá! Gostaria de falar com a Clínica Reinaldo Guazzelli." href="#">Iniciar conversa ↗</a>
+        <a data-wa data-msg="Olá! Gostaria de falar com a Clínica Reinaldo Guazzelli." href="#">Iniciar conversa ↗</a>
       </div>
-
       <div class="contact-detail">
         <span>⌖</span>
         <div><strong>Endereço</strong><small>Rua Brasil, 343 — Assis/SP</small></div>
         <a href="https://www.google.com/maps/search/?api=1&query=Rua+Brasil+343+Assis+SP" target="_blank" rel="noopener">Ver no mapa ↗</a>
       </div>
-
       <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps?q=Rua+Brasil+343+Assis+SP&output=embed"
-          width="100%" height="250"
-          style="border:0;border-radius:16px;"
-          allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa — Rua Brasil 343, Assis/SP"></iframe>
+        <iframe src="https://www.google.com/maps?q=Rua+Brasil+343+Assis+SP&output=embed" width="100%" height="250" style="border:0;border-radius:16px" allowfullscreen="" loading="lazy" title="Mapa da clínica"></iframe>
       </div>
     </div>
-
     <div class="contact-panel">
       <h3>Envie sua dúvida</h3>
-      <p>Este formulário abre uma mensagem no WhatsApp; não envia dados para um servidor do site.</p>
+      <p>Este formulário abre uma mensagem no WhatsApp.</p>
       <form id="contactForm">
         <label>Como podemos chamar você?<input name="nome" required maxlength="100" placeholder="Seu nome"></label>
-        <label>Assunto
-          <select name="assunto">
-            <option>Hipnoterapia</option>
-            <option>Psicoterapia / TCC</option>
-            <option>Terapia do Esquema</option>
-            <option>EMDR</option>
-            <option>Quiropraxia</option>
-            <option>Massagem Terapêutica</option>
-            <option>Estética</option>
-            <option>Fisioterapia</option>
-            <option>Agendamento</option>
-            <option>Pagamentos</option>
-            <option>Materiais para consulta</option>
-            <option>Outra dúvida</option>
-          </select>
-        </label>
+        <label>Assunto<select name="assunto"><option>Hipnoterapia</option><option>Psicoterapia / TCC</option><option>Terapia do Esquema</option><option>EMDR</option><option>Quiropraxia</option><option>Massagem</option><option>Estética</option><option>Fisioterapia</option><option>Agendamento</option><option>Pagamentos</option><option>Materiais</option><option>Outra dúvida</option></select></label>
         <label>Mensagem<textarea name="mensagem" required maxlength="1000" rows="4" placeholder="Escreva sua dúvida"></textarea></label>
-        <button class="btn btn-primary full-width" type="submit">Enviar pelo WhatsApp</button>
+        <button class="btn btn-primary full" type="submit">Enviar pelo WhatsApp</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- LGPD -->
 <section class="privacy-section" id="privacidade">
   <div class="container privacy-content">
-    <div><span class="eyebrow">Privacidade e transparência</span><h2>Proteção de dados — LGPD</h2></div>
+    <div><span class="eyebrow">Privacidade</span><h2>Proteção de dados — LGPD</h2></div>
     <div>
-      <p>Em conformidade com a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais — LGPD), este site coleta apenas os dados necessários para responder a solicitações e organizar pedidos de agendamento. Evite enviar informações sensíveis de saúde pelo formulário ou WhatsApp.</p>
-      <p>Os formulários funcionam no navegador e montam uma mensagem para envio voluntário pelo WhatsApp. A agenda demonstrativa armazena informações no armazenamento local do navegador; isso não é um sistema seguro para dados reais de pacientes. Antes de usar em produção, implemente controle de acesso no servidor, política de retenção, medidas de segurança e processo para atender solicitações dos titulares.</p>
-      <p><strong>Seus direitos:</strong> você pode solicitar confirmação do tratamento, acesso, correção e outras providências previstas na LGPD por meio do contato oficial da clínica.</p>
-      <p class="privacy-note">Este texto é um modelo informativo e não substitui uma política de privacidade revisada para as práticas reais da clínica.</p>
+      <p>Em conformidade com a Lei nº 13.709/2018 (LGPD), este site coleta apenas dados necessários para responder a solicitações e organizar pedidos de agendamento. Evite enviar informações sensíveis de saúde pelo formulário ou WhatsApp.</p>
+      <p>Os formulários funcionam no navegador e montam mensagem para envio voluntário pelo WhatsApp. A agenda demonstrativa armazena informações no navegador local; não é sistema seguro para dados reais. Antes de usar em produção, implemente controle de acesso no servidor, política de retenção e medidas de segurança.</p>
+      <p><strong>Seus direitos:</strong> solicite confirmação, acesso, correção e outras providências previstas na LGPD pelo contato oficial.</p>
+      <p class="privacy-note">Texto informativo; não substitui política de privacidade revisada.</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container footer-inner">
     <a class="brand footer-brand" href="#inicio">
@@ -396,57 +560,370 @@
   </div>
 </footer>
 
-<!-- WHATSAPP FLUTUANTE -->
-<a class="floating-whatsapp" data-whatsapp data-message="Olá! Gostaria de tirar uma dúvida sobre a clínica." href="#" aria-label="Falar com a clínica pelo WhatsApp">
+<a class="floating-whatsapp" data-wa data-msg="Olá! Gostaria de tirar uma dúvida sobre a clínica." href="#" aria-label="WhatsApp">
   <span>☏</span><b>WhatsApp</b>
 </a>
 
-<!-- DIALOG ADMIN -->
 <dialog id="adminDialog" class="admin-dialog">
   <div class="dialog-head">
     <div><span class="eyebrow">Acesso administrativo</span><h2>Área do proprietário</h2></div>
     <button id="adminClose" class="dialog-close" aria-label="Fechar">×</button>
   </div>
   <div id="adminLoginView">
-    <p>Entre para administrar os horários demonstrativos deste navegador.</p>
+    <p>Entre para administrar os horários deste navegador.</p>
     <form id="adminLogin">
-      <label>Senha<input type="password" name="senha" required autocomplete="current-password" placeholder="Digite a senha"></label>
-      <button class="btn btn-primary full-width" type="submit">Entrar</button>
-      <p class="admin-warning">Atenção: esta versão é apenas uma demonstração. A senha no JavaScript não protege dados em um site público. Use autenticação no servidor antes de publicar.</p>
+      <label>Senha<input type="password" name="senha" required placeholder="Digite a senha"></label>
+      <button class="btn btn-primary full" type="submit">Entrar</button>
+      <p class="admin-warning">Demonstração. A senha no JavaScript não protege dados em site público. Use autenticação no servidor antes de publicar.</p>
     </form>
   </div>
   <div id="adminPanel" hidden>
-    <p class="admin-warning">Os dados ficam apenas neste navegador. Não use informações reais de pacientes nesta versão demonstrativa.</p>
+    <p class="admin-warning">Os dados ficam apenas neste navegador. Não use informações reais de pacientes.</p>
     <form id="adminAppointmentForm">
       <label>Data<input type="date" name="data" required></label>
-      <label>Horário
-        <select name="horario" required>
-          <option>09:00</option><option>10:00</option><option>11:00</option>
-          <option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option>
-        </select>
-      </label>
-      <label>Status
-        <select name="status">
-          <option value="ocupado">Ocupado</option>
-          <option value="livre">Liberar horário</option>
-        </select>
-      </label>
-      <label>Nome do cliente (somente demonstração)<input name="nome" maxlength="100" placeholder="Nome"></label>
+      <label>Horário<select name="horario" required><option>09:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></label>
+      <label>Status<select name="status"><option value="ocupado">Ocupado</option><option value="livre">Liberar horário</option></select></label>
+      <label>Nome do cliente<input name="nome" maxlength="100" placeholder="Nome"></label>
       <label>Celular<input name="celular" maxlength="30" placeholder="Celular"></label>
       <label>Cidade<input name="cidade" maxlength="80" placeholder="Cidade"></label>
-      <label>Observação / desistência<input name="observacao" maxlength="200" placeholder="Ex.: cancelamento informado em ..."></label>
-      <label class="checkbox-label"><input type="checkbox" name="cancelamento"> Registrar pedido de desistência/cancelamento</label>
-      <button class="btn btn-primary full-width" type="submit">Salvar horário</button>
+      <button class="btn btn-primary full" type="submit">Salvar horário</button>
     </form>
     <div class="admin-actions">
-      <button id="exportData" class="btn btn-secondary" type="button">Exportar agenda CSV</button>
-      <button id="clearDemo" class="btn btn-danger" type="button">Apagar agenda demonstrativa</button>
-      <button id="adminLogout" class="text-button" type="button">Sair da área restrita</button>
+      <button id="exportData" class="btn btn-secondary" type="button">Exportar CSV</button>
+      <button id="clearDemo" class="btn btn-danger" type="button">Apagar agenda</button>
+      <button id="adminLogout" class="text-link" type="button" style="background:none">Sair</button>
     </div>
     <div id="adminRecords" class="admin-records"></div>
   </div>
 </dialog>
 
-<script src="script.js"></script>
+<script>
+// ===== CONFIGURAÇÃO =====
+const WHATSAPP_NUMBER = "5518996443026";
+const ADMIN_PASSWORD = "clinica2024";
+const HORARIOS = ["09:00","10:00","11:00","14:00","15:00","16:00","17:00"];
+const STORAGE_KEY = "clinica_rg_agenda_v2";
+
+// ===== UTILITÁRIOS =====
+function abrirWhatsApp(msg){
+  const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+  window.open(url, "_blank", "noopener");
+}
+function fmtData(d){
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function fmtDataBR(d){
+  return d.toLocaleDateString("pt-BR", {weekday:"long", day:"numeric", month:"long"});
+}
+
+// ===== LINKS WHATSAPP =====
+document.querySelectorAll("[data-wa]").forEach(el => {
+  el.addEventListener("click", e => {
+    e.preventDefault();
+    abrirWhatsApp(el.dataset.msg || "Olá! Gostaria de mais informações.");
+  });
+});
+
+// ===== MENU MOBILE =====
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+menuToggle.addEventListener("click", () => {
+  const open = mainNav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", open);
+});
+
+// ===== ANO FOOTER =====
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// ===== AGENDA =====
+function getAgenda(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveAgenda(a){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(a));
+}
+function getDia(dataStr){
+  const a = getAgenda();
+  if(!a[dataStr]){
+    a[dataStr] = {};
+    HORARIOS.forEach(h => a[dataStr][h] = {status:"livre", nome:"", celular:"", cidade:""});
+    saveAgenda(a);
+  }
+  HORARIOS.forEach(h => {
+    if(typeof a[dataStr][h] === "string") a[dataStr][h] = {status:a[dataStr][h], nome:"", celular:"", cidade:""};
+    if(!a[dataStr][h]) a[dataStr][h] = {status:"livre", nome:"", celular:"", cidade:""};
+  });
+  return a[dataStr];
+}
+function setHorario(dataStr, horario, dados){
+  const a = getAgenda();
+  if(!a[dataStr]) a[dataStr] = {};
+  a[dataStr][horario] = dados;
+  saveAgenda(a);
+}
+
+// ===== ESTADO CALENDÁRIO =====
+let dataAtual = new Date(); dataAtual.setDate(1);
+let dataSel = null;
+let horaSel = null;
+
+const monthLabel = document.getElementById("monthLabel");
+const calendarDays = document.getElementById("calendarDays");
+const selectedDateTitle = document.getElementById("selectedDateTitle");
+const selectedDateHelp = document.getElementById("selectedDateHelp");
+const slotsList = document.getElementById("slotsList");
+const bookingForm = document.getElementById("bookingForm");
+const selectedSlotInfo = document.getElementById("selectedSlotInfo");
+
+function renderCalendario(){
+  const ano = dataAtual.getFullYear();
+  const mes = dataAtual.getMonth();
+  const nomeMes = dataAtual.toLocaleDateString("pt-BR",{month:"long", year:"numeric"});
+  monthLabel.textContent = nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
+
+  calendarDays.innerHTML = "";
+  const primeiroDia = new Date(ano, mes, 1).getDay();
+  const ultimoDia = new Date(ano, mes+1, 0).getDate();
+
+  for(let i=0; i<primeiroDia; i++){
+    const v = document.createElement("div");
+    v.className = "cal-day empty";
+    calendarDays.appendChild(v);
+  }
+
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+
+  for(let dia=1; dia<=ultimoDia; dia++){
+    const data = new Date(ano, mes, dia);
+    const dow = data.getDay();
+    const dataStr = fmtData(data);
+    const cel = document.createElement("div");
+    cel.className = "cal-day";
+    cel.textContent = dia;
+
+    if(dow === 0 || dow === 6 || data < hoje){
+      cel.classList.add("disabled");
+    } else {
+      const horarios = getDia(dataStr);
+      const ocupados = HORARIOS.filter(h => horarios[h].status === "ocupado").length;
+      if(ocupados === 0) cel.classList.add("free");
+      else if(ocupados >= HORARIOS.length) cel.classList.add("full");
+      else cel.classList.add("partial");
+
+      if(dataSel === dataStr) cel.classList.add("selected");
+
+      cel.addEventListener("click", () => {
+        dataSel = dataStr;
+        horaSel = null;
+        renderCalendario();
+        renderHorarios();
+      });
+    }
+    calendarDays.appendChild(cel);
+  }
+}
+
+document.getElementById("prevMonth").addEventListener("click", () => {
+  dataAtual.setMonth(dataAtual.getMonth()-1);
+  renderCalendario();
+});
+document.getElementById("nextMonth").addEventListener("click", () => {
+  dataAtual.setMonth(dataAtual.getMonth()+1);
+  renderCalendario();
+});
+
+function renderHorarios(){
+  if(!dataSel){
+    selectedDateTitle.textContent = "Horários disponíveis";
+    selectedDateHelp.textContent = "Selecione um dia útil no calendário.";
+    slotsList.innerHTML = '<div class="empty-state">Nenhuma data selecionada.</div>';
+    bookingForm.hidden = true;
+    return;
+  }
+  const [a, m, d] = dataSel.split("-").map(Number);
+  const dataObj = new Date(a, m-1, d);
+  selectedDateHelp.textContent = fmtDataBR(dataObj);
+
+  const horarios = getDia(dataSel);
+  slotsList.innerHTML = "";
+
+  HORARIOS.forEach(h => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "slot-btn";
+    btn.textContent = h;
+
+    if(horarios[h].status === "ocupado"){
+      btn.classList.add("occupied");
+      btn.disabled = true;
+      btn.title = "Ocupado";
+    } else {
+      if(horaSel === h) btn.classList.add("selected");
+      btn.addEventListener("click", () => {
+        horaSel = h;
+        renderHorarios();
+      });
+    }
+    slotsList.appendChild(btn);
+  });
+
+  if(horaSel){
+    bookingForm.hidden = false;
+    const dataFormatada = dataObj.toLocaleDateString("pt-BR");
+    selectedSlotInfo.innerHTML = "<strong>" + dataFormatada + "</strong> às <strong>" + horaSel + "</strong>";
+  } else {
+    bookingForm.hidden = true;
+  }
+}
+
+// ===== FORM AGENDAMENTO =====
+document.getElementById("bookingRequest").addEventListener("submit", e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const nome = fd.get("nome").trim();
+  const celular = fd.get("celular").trim();
+  const cidade = fd.get("cidade").trim();
+
+  setHorario(dataSel, horaSel, {status:"ocupado", nome, celular, cidade});
+
+  const [a, m, d] = dataSel.split("-").map(Number);
+  const dataBR = new Date(a, m-1, d).toLocaleDateString("pt-BR");
+
+  const msg = "Olá! Gostaria de confirmar um agendamento.\n\n" +
+    "📅 Data: " + dataBR + "\n" +
+    "🕐 Horário: " + horaSel + "\n" +
+    "👤 Nome: " + nome + "\n" +
+    "📱 Celular: " + celular + "\n" +
+    "📍 Cidade: " + cidade + "\n\n" +
+    "Aguardo confirmação. Obrigado(a)!";
+  abrirWhatsApp(msg);
+  e.target.reset();
+
+  horaSel = null;
+  renderCalendario();
+  renderHorarios();
+  alert("Solicitação enviada! Horário reservado no calendário. A clínica confirmará pelo WhatsApp.");
+});
+
+// ===== FORM CONTATO =====
+document.getElementById("contactForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const msg = "Olá! Vim pelo site.\n\n" +
+    "Nome: " + fd.get("nome") + "\n" +
+    "Assunto: " + fd.get("assunto") + "\n" +
+    "Mensagem: " + fd.get("mensagem");
+  abrirWhatsApp(msg);
+  e.target.reset();
+});
+
+// ===== MATERIAIS =====
+document.querySelectorAll("[data-material]").forEach(el => {
+  el.addEventListener("click", e => {
+    e.preventDefault();
+    abrirWhatsApp('Olá! Gostaria de solicitar o material "' + el.dataset.material + '".');
+  });
+});
+
+// ===== ADMIN =====
+const adminDialog = document.getElementById("adminDialog");
+const adminLoginView = document.getElementById("adminLoginView");
+const adminPanel = document.getElementById("adminPanel");
+
+document.getElementById("adminOpen").addEventListener("click", () => {
+  adminDialog.showModal();
+  adminLoginView.hidden = false;
+  adminPanel.hidden = true;
+});
+document.getElementById("adminClose").addEventListener("click", () => adminDialog.close());
+
+document.getElementById("adminLogin").addEventListener("submit", e => {
+  e.preventDefault();
+  if(e.target.senha.value === ADMIN_PASSWORD){
+    adminLoginView.hidden = true;
+    adminPanel.hidden = false;
+    renderAdmin();
+    e.target.reset();
+  } else {
+    alert("Senha incorreta.");
+  }
+});
+
+document.getElementById("adminAppointmentForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  setHorario(fd.get("data"), fd.get("horario"), {
+    status: fd.get("status"),
+    nome: fd.get("nome") || "",
+    celular: fd.get("celular") || "",
+    cidade: fd.get("cidade") || ""
+  });
+  alert("Horário salvo!");
+  e.target.reset();
+  renderAdmin();
+  renderCalendario();
+  if(dataSel === fd.get("data")) renderHorarios();
+});
+
+function renderAdmin(){
+  const a = getAgenda();
+  const datas = Object.keys(a).sort();
+  const box = document.getElementById("adminRecords");
+  if(datas.length === 0){
+    box.innerHTML = '<p style="color:#6b6359;font-style:italic;">Nenhum registro.</p>';
+    return;
+  }
+  let html = "<h4>Agendamentos</h4><table><thead><tr><th>Data</th><th>Hora</th><th>Status</th><th>Nome</th><th>Celular</th><th>Cidade</th></tr></thead><tbody>";
+  datas.forEach(data => {
+    Object.keys(a[data]).sort().forEach(h => {
+      const reg = a[data][h];
+      if(typeof reg === "string") return;
+      if(reg.status === "livre" && !reg.nome) return;
+      html += "<tr><td>" + data + "</td><td>" + h + "</td><td>" + (reg.status||"") + "</td><td>" + (reg.nome||"-") + "</td><td>" + (reg.celular||"-") + "</td><td>" + (reg.cidade||"-") + "</td></tr>";
+    });
+  });
+  html += "</tbody></table>";
+  box.innerHTML = html;
+}
+
+document.getElementById("exportData").addEventListener("click", () => {
+  const a = getAgenda();
+  const linhas = [["Data","Hora","Status","Nome","Celular","Cidade"]];
+  Object.keys(a).sort().forEach(data => {
+    Object.keys(a[data]).sort().forEach(h => {
+      const r = a[data][h];
+      if(typeof r === "string") return;
+      linhas.push([data, h, r.status||"", r.nome||"", r.celular||"", r.cidade||""]);
+    });
+  });
+  const csv = linhas.map(l => l.map(v => '"' + String(v).replace(/"/g,'""') + '"').join(",")).join("\n");
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "agenda_clinica_rg.csv";
+  link.click();
+});
+
+document.getElementById("clearDemo").addEventListener("click", () => {
+  if(confirm("Apagar toda a agenda deste navegador?")){
+    localStorage.removeItem(STORAGE_KEY);
+    dataSel = null; horaSel = null;
+    renderAdmin();
+    renderCalendario();
+    renderHorarios();
+    alert("Agenda apagada.");
+  }
+});
+
+document.getElementById("adminLogout").addEventListener("click", () => {
+  adminLoginView.hidden = false;
+  adminPanel.hidden = true;
+});
+
+// ===== INIT =====
+renderCalendario();
+renderHorarios();
+</script>
 </body>
 </html>
