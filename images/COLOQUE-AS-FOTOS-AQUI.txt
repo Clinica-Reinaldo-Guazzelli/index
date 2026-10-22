@@ -1,0 +1,1 @@
+Coloque nesta pasta as fotos reais com os nomes: fachada-clinica.jpg, recepcao-clinica.jpg e sala-atendimento.jpg.
