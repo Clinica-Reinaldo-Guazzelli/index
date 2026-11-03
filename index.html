@@ -196,6 +196,24 @@ p{margin-bottom:1em;color:var(--texto-suave)}
 .material-body p{font-size:.95rem;flex:1;margin-bottom:1.2em}
 .material-link{font-size:.9rem;font-weight:600;color:var(--primaria)}
 
+/* MATÉRIAS PUBLICADAS */
+.press-section{background:var(--branco)}
+.press-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5em}
+.press-card{background:var(--fundo);border:1px solid var(--borda);border-radius:var(--raio);padding:1.8em;display:flex;flex-direction:column;gap:.7em}
+.press-card time,.press-source{font-size:.78rem;color:var(--texto-suave)}
+.press-card h3{font-size:1.2rem}
+.press-card p{font-size:.92rem;margin:0}
+.press-card a{font-weight:600;color:var(--primaria)}
+.press-admin{margin:2em 0;padding:1.5em;border:1px solid var(--borda);border-radius:var(--raio-p);background:var(--fundo-alt)}
+.press-admin h3{margin-bottom:.5em}
+.press-admin form{margin-top:1.2em}
+.press-admin textarea{width:100%;padding:.8em 1.1em;margin-top:.4em;border:1.5px solid var(--borda);border-radius:var(--raio-p);font:inherit;background:var(--fundo)}
+.press-admin textarea:focus{outline:none;border-color:var(--primaria);background:#fff;box-shadow:0 0 0 3px rgba(122,103,79,.12)}
+.press-admin-list{display:grid;gap:.7em;margin-top:1em}
+.press-admin-item{display:flex;justify-content:space-between;align-items:center;gap:1em;padding:.8em 1em;background:#fff;border:1px solid var(--borda);border-radius:var(--raio-p)}
+.press-admin-item span{font-size:.88rem;overflow-wrap:anywhere}
+.press-status{min-height:1.4em;margin:.7em 0 0;color:var(--primaria);font-size:.88rem}
+
 /* DEPOIMENTOS */
 .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2em}
 .testimonial-card{background:var(--branco);border-radius:var(--raio);padding:2.2em;box-shadow:var(--sombra);border:1px solid var(--borda);display:flex;flex-direction:column;gap:1.5em;transition:var(--trans)}
@@ -310,6 +328,7 @@ p{margin-bottom:1em;color:var(--texto-suave)}
     <nav id="mainNav">
       <a href="#sobre">A clínica</a>
       <a href="#atendimentos">Atendimentos</a>
+      <a href="#materias">Na mídia</a>
       <a href="#pagamentos">Pagamentos</a>
       <a href="#agenda">Agendamento</a>
       <a href="#depoimentos">Depoimentos</a>
@@ -479,6 +498,17 @@ p{margin-bottom:1em;color:var(--texto-suave)}
   </div>
 </section>
 
+<section class="section press-section" id="materias" hidden>
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Na mídia</span>
+      <h2>Matérias e publicações</h2>
+      <p>Notícias, entrevistas e conteúdos publicados em jornais e sites.</p>
+    </div>
+    <div class="press-grid" id="materiasPublicadas"></div>
+  </div>
+</section>
+
 <section class="section" id="depoimentos">
   <div class="container">
     <div class="section-heading">
@@ -587,6 +617,20 @@ p{margin-bottom:1em;color:var(--texto-suave)}
   </div>
   <div id="adminPanel" hidden>
     <p class="admin-warning">Os dados ficam apenas neste navegador. Não use informações reais de pacientes.</p>
+    <section class="press-admin" aria-labelledby="gerenciarMateriasTitulo">
+      <h3 id="gerenciarMateriasTitulo">Matérias a publicar</h3>
+      <p>Cadastre uma notícia ou entrevista. Ao salvar, ela aparece na seção “Na mídia” do site neste navegador.</p>
+      <form id="formMateria">
+        <label>Título da matéria<input name="titulo" required maxlength="140" placeholder="Título"></label>
+        <label>Jornal ou site<input name="fonte" required maxlength="100" placeholder="Nome da publicação"></label>
+        <label>Resumo<textarea name="resumo" required maxlength="400" rows="3" placeholder="Breve descrição da matéria"></textarea></label>
+        <label>Link da publicação<input name="url" type="url" required placeholder="https://..."></label>
+        <label>Data da publicação<input name="data" type="date" required></label>
+        <button class="btn btn-primary full" type="submit">Publicar matéria</button>
+      </form>
+      <p id="materiaStatus" class="press-status" role="status" aria-live="polite"></p>
+      <div id="materiasAdminList" class="press-admin-list"></div>
+    </section>
     <form id="adminAppointmentForm">
       <label>Data<input type="date" name="data" required></label>
       <label>Horário<select name="horario" required><option>09:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></label>
@@ -611,6 +655,7 @@ const ADMIN_USER = "reinaldo";
 const ADMIN_PASSWORD = "12345678";
 const HORARIOS = ["09:00","10:00","11:00","14:00","15:00","16:00","17:00"];
 const STORAGE_KEY = "clinica_rg_agenda_v2";
+const MATERIAS_KEY = "clinica_rg_materias_v1";
 
 function abrirWhatsApp(msg){
   const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
@@ -847,6 +892,113 @@ document.getElementById("adminLogin").addEventListener("submit", e => {
     alert("Senha incorreta.");
   }
 });
+
+const formMateria = document.getElementById("formMateria");
+const materiasPublicadas = document.getElementById("materiasPublicadas");
+const materiasAdminList = document.getElementById("materiasAdminList");
+const materiaStatus = document.getElementById("materiaStatus");
+
+function getMaterias(){
+  try{
+    const materias = JSON.parse(localStorage.getItem(MATERIAS_KEY) || "[]");
+    if(!Array.isArray(materias)) throw new Error("Formato de matérias inválido.");
+    return materias;
+  }catch(err){
+    console.error("Não foi possível carregar as matérias.", err);
+    materiaStatus.textContent = "Não foi possível carregar as matérias salvas neste navegador.";
+    return [];
+  }
+}
+
+function salvarMaterias(materias){
+  try{
+    localStorage.setItem(MATERIAS_KEY, JSON.stringify(materias));
+    materiaStatus.textContent = "Matérias salvas neste navegador.";
+    return true;
+  }catch(err){
+    console.error("Não foi possível salvar as matérias.", err);
+    materiaStatus.textContent = "Não foi possível salvar. Verifique o espaço disponível no navegador.";
+    return false;
+  }
+}
+
+function formatarDataMateria(data){
+  const partes = data.split("-").map(Number);
+  return new Date(partes[0], partes[1]-1, partes[2]).toLocaleDateString("pt-BR");
+}
+
+function renderMaterias(){
+  const materias = getMaterias();
+  materiasPublicadas.replaceChildren();
+  materiasAdminList.replaceChildren();
+  document.getElementById("materias").hidden = materias.length === 0;
+
+  materias.forEach(materia => {
+    const card = document.createElement("article");
+    card.className = "press-card";
+    const fonte = document.createElement("span");
+    fonte.className = "press-source";
+    fonte.textContent = materia.fonte;
+    const titulo = document.createElement("h3");
+    titulo.textContent = materia.titulo;
+    const resumo = document.createElement("p");
+    resumo.textContent = materia.resumo;
+    const data = document.createElement("time");
+    data.dateTime = materia.data;
+    data.textContent = formatarDataMateria(materia.data);
+    const link = document.createElement("a");
+    link.href = materia.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Ler publicação ↗";
+    card.append(fonte, titulo, resumo, data, link);
+    materiasPublicadas.appendChild(card);
+
+    const item = document.createElement("div");
+    item.className = "press-admin-item";
+    const label = document.createElement("span");
+    label.textContent = materia.titulo + " — " + materia.fonte;
+    const remover = document.createElement("button");
+    remover.type = "button";
+    remover.className = "btn btn-danger";
+    remover.textContent = "Remover";
+    remover.addEventListener("click", () => {
+      if(salvarMaterias(getMaterias().filter(registro => registro.id !== materia.id))) renderMaterias();
+    });
+    item.append(label, remover);
+    materiasAdminList.appendChild(item);
+  });
+}
+
+formMateria.addEventListener("submit", e => {
+  e.preventDefault();
+  const dados = new FormData(formMateria);
+  let url;
+  try{
+    url = new URL(String(dados.get("url")).trim());
+    if(url.protocol !== "http:" && url.protocol !== "https:") throw new Error("Protocolo inválido.");
+  }catch(err){
+    materiaStatus.textContent = "Informe um link válido começando com https:// ou http://.";
+    return;
+  }
+
+  const materias = getMaterias();
+  materias.unshift({
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+    titulo: String(dados.get("titulo")).trim(),
+    fonte: String(dados.get("fonte")).trim(),
+    resumo: String(dados.get("resumo")).trim(),
+    url: url.href,
+    data: String(dados.get("data"))
+  });
+  if(salvarMaterias(materias)){
+    formMateria.reset();
+    renderMaterias();
+  }
+});
+
+formMateria.elements.data.value = fmtData(new Date());
+renderMaterias();
 
 document.getElementById("adminAppointmentForm").addEventListener("submit", e => {
   e.preventDefault();
