@@ -579,7 +579,8 @@ p{margin-bottom:1em;color:var(--texto-suave)}
   <div id="adminLoginView">
     <p>Entre para administrar os horários deste navegador.</p>
     <form id="adminLogin">
-      <label>Senha<input type="password" name="senha" required placeholder="Digite a senha"></label>
+      <label>Login<input type="text" name="usuario" autocomplete="username" required placeholder="Digite o login"></label>
+      <label>Senha<input type="password" name="senha" autocomplete="current-password" required placeholder="Digite a senha"></label>
       <button class="btn btn-primary full" type="submit">Entrar</button>
       <p class="admin-warning">Demonstração. A senha no JavaScript não protege dados em site público. Use autenticação no servidor antes de publicar.</p>
     </form>
@@ -606,7 +607,8 @@ p{margin-bottom:1em;color:var(--texto-suave)}
 
 <script>
 const WHATSAPP_NUMBER = "5518996443026";
-const ADMIN_PASSWORD = "clinica2024";
+const ADMIN_USER = "reinaldo";
+const ADMIN_PASSWORD = "12345678";
 const HORARIOS = ["09:00","10:00","11:00","14:00","15:00","16:00","17:00"];
 const STORAGE_KEY = "clinica_rg_agenda_v2";
 
@@ -836,7 +838,7 @@ document.getElementById("adminClose").addEventListener("click", () => adminDialo
 
 document.getElementById("adminLogin").addEventListener("submit", e => {
   e.preventDefault();
-  if(e.target.senha.value === ADMIN_PASSWORD){
+  if(e.target.usuario.value.trim().toLowerCase() === ADMIN_USER && e.target.senha.value === ADMIN_PASSWORD){
     adminLoginView.hidden = true;
     adminPanel.hidden = false;
     renderAdmin();
