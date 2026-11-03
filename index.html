@@ -607,7 +607,7 @@ p{margin-bottom:1em;color:var(--texto-suave)}
     <button id="adminClose" class="dialog-close" aria-label="Fechar">×</button>
   </div>
   <div id="adminLoginView">
-    <p>Entre para administrar os horários deste navegador.</p>
+    <p>Entre para cadastrar e gerenciar matérias publicadas em jornais e sites.</p>
     <form id="adminLogin">
       <label>Login<input type="text" name="usuario" autocomplete="username" required placeholder="Digite o login"></label>
       <label>Senha<input type="password" name="senha" autocomplete="current-password" required placeholder="Digite a senha"></label>
@@ -616,7 +616,7 @@ p{margin-bottom:1em;color:var(--texto-suave)}
     </form>
   </div>
   <div id="adminPanel" hidden>
-    <p class="admin-warning">Os dados ficam apenas neste navegador. Não use informações reais de pacientes.</p>
+    <p class="admin-warning">As matérias ficam salvas apenas neste navegador e não são sincronizadas com outros dispositivos.</p>
     <section class="press-admin" aria-labelledby="gerenciarMateriasTitulo">
       <h3 id="gerenciarMateriasTitulo">Matérias a publicar</h3>
       <p>Cadastre uma notícia ou entrevista. Ao salvar, ela aparece na seção “Na mídia” do site neste navegador.</p>
@@ -631,21 +631,9 @@ p{margin-bottom:1em;color:var(--texto-suave)}
       <p id="materiaStatus" class="press-status" role="status" aria-live="polite"></p>
       <div id="materiasAdminList" class="press-admin-list"></div>
     </section>
-    <form id="adminAppointmentForm">
-      <label>Data<input type="date" name="data" required></label>
-      <label>Horário<select name="horario" required><option>09:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></label>
-      <label>Status<select name="status"><option value="ocupado">Ocupado</option><option value="livre">Liberar horário</option></select></label>
-      <label>Nome do cliente<input name="nome" maxlength="100" placeholder="Nome"></label>
-      <label>Celular<input name="celular" maxlength="30" placeholder="Celular"></label>
-      <label>Cidade<input name="cidade" maxlength="80" placeholder="Cidade"></label>
-      <button class="btn btn-primary full" type="submit">Salvar horário</button>
-    </form>
     <div class="admin-actions">
-      <button id="exportData" class="btn btn-secondary" type="button">Exportar CSV</button>
-      <button id="clearDemo" class="btn btn-danger" type="button">Apagar agenda</button>
       <button id="adminLogout" class="text-link" type="button" style="background:none">Sair</button>
     </div>
-    <div id="adminRecords" class="admin-records"></div>
   </div>
 </dialog>
 
@@ -886,7 +874,7 @@ document.getElementById("adminLogin").addEventListener("submit", e => {
   if(e.target.usuario.value.trim().toLowerCase() === ADMIN_USER && e.target.senha.value === ADMIN_PASSWORD){
     adminLoginView.hidden = true;
     adminPanel.hidden = false;
-    renderAdmin();
+    renderMaterias();
     e.target.reset();
   } else {
     alert("Senha incorreta.");
@@ -999,72 +987,6 @@ formMateria.addEventListener("submit", e => {
 
 formMateria.elements.data.value = fmtData(new Date());
 renderMaterias();
-
-document.getElementById("adminAppointmentForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  setHorario(fd.get("data"), fd.get("horario"), {
-    status: fd.get("status"),
-    nome: fd.get("nome") || "",
-    celular: fd.get("celular") || "",
-    cidade: fd.get("cidade") || ""
-  });
-  alert("Horário salvo!");
-  e.target.reset();
-  renderAdmin();
-  renderCalendario();
-  if(dataSel === fd.get("data")) renderHorarios();
-});
-
-function renderAdmin(){
-  const a = getAgenda();
-  const datas = Object.keys(a).sort();
-  const box = document.getElementById("adminRecords");
-  if(datas.length === 0){
-    box.innerHTML = '<p style="color:#6b6359;font-style:italic;">Nenhum registro.</p>';
-    return;
-  }
-  let html = "<h4>Agendamentos</h4><table><thead><tr><th>Data</th><th>Hora</th><th>Status</th><th>Nome</th><th>Celular</th><th>Cidade</th></tr></thead><tbody>";
-  datas.forEach(data => {
-    Object.keys(a[data]).sort().forEach(h => {
-      const reg = a[data][h];
-      if(typeof reg === "string") return;
-      if(reg.status === "livre" && !reg.nome) return;
-      html += "<tr><td>" + data + "</td><td>" + h + "</td><td>" + (reg.status||"") + "</td><td>" + (reg.nome||"-") + "</td><td>" + (reg.celular||"-") + "</td><td>" + (reg.cidade||"-") + "</td></tr>";
-    });
-  });
-  html += "</tbody></table>";
-  box.innerHTML = html;
-}
-
-document.getElementById("exportData").addEventListener("click", () => {
-  const a = getAgenda();
-  const linhas = [["Data","Hora","Status","Nome","Celular","Cidade"]];
-  Object.keys(a).sort().forEach(data => {
-    Object.keys(a[data]).sort().forEach(h => {
-      const r = a[data][h];
-      if(typeof r === "string") return;
-      linhas.push([data, h, r.status||"", r.nome||"", r.celular||"", r.cidade||""]);
-    });
-  });
-  const csv = linhas.map(l => l.map(v => '"' + String(v).replace(/"/g,'""') + '"').join(",")).join("\n");
-  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "agenda_clinica_rg.csv";
-  link.click();
-});
-
-document.getElementById("clearDemo").addEventListener("click", () => {
-  if(confirm("Apagar toda a agenda deste navegador?")){
-    localStorage.removeItem(STORAGE_KEY);
-    dataSel = null; horaSel = null;
-    renderAdmin();
-    renderCalendario();
-    renderHorarios();
-    alert("Agenda apagada.");
-  }
-});
 
 document.getElementById("adminLogout").addEventListener("click", () => {
   adminLoginView.hidden = false;
